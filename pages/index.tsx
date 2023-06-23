@@ -1,3 +1,11 @@
+import Header from '@/components/common/Header';
+import { Fragment } from 'react';
+
 export default function Home() {
-  return <h1>Hello world!</h1>;
+  return (
+    <Fragment>
+      <Header />
+      <main></main>
+    </Fragment>
+  );
 }
