@@ -2,7 +2,7 @@ import { Store } from '@/types/store';
 import { useCallback } from 'react';
 import { mutate } from 'swr';
 
-const STORE_KEY = '/stores';
+export const STORE_KEY = '/stores';
 
 const useStores = () => {
   const initializeStores = useCallback((stores: Store[]) => {

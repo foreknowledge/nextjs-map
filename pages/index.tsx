@@ -13,7 +13,6 @@ interface Props {
 }
 
 export default function Home({ stores }: Props) {
-  console.log(stores);
   const { initializeStores } = useStores();
 
   useEffect(() => {
