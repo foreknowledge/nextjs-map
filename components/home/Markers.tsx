@@ -1,3 +1,4 @@
+import useCurrentStore, { CURRENT_STORE_KEY } from '@/hooks/useCurrentStore';
 import { MAP_KEY } from '@/hooks/useMap';
 import { STORE_KEY } from '@/hooks/useStores';
 import { ImageIcon, NaverMap } from '@/types/map';
@@ -9,17 +10,34 @@ const Markers = () => {
   const { data: map } = useSWR<NaverMap>(MAP_KEY);
   const { data: stores } = useSWR<Store[]>(STORE_KEY);
 
+  const { data: currentStore } = useSWR<Store>(CURRENT_STORE_KEY);
+  const { setCurrentStore, clearCurrentStore } = useCurrentStore();
+
   if (!map || !stores) return null;
-  return stores.map((store) => {
-    return (
-      <Marker
-        key={store.nid}
-        map={map}
-        coordinates={store.coordinates}
-        icon={generateStoreMarkerIcon(store.season)}
-      />
-    );
-  });
+  return (
+    <>
+      {stores.map((store) => {
+        return (
+          <Marker
+            key={store.nid}
+            map={map}
+            coordinates={store.coordinates}
+            icon={generateStoreMarkerIcon(store.season, false)}
+            onClick={() => setCurrentStore(store)}
+          />
+        );
+      })}
+      {currentStore && (
+        <Marker
+          key={currentStore.nid}
+          map={map}
+          coordinates={currentStore.coordinates}
+          icon={generateStoreMarkerIcon(currentStore.season, true)}
+          onClick={() => clearCurrentStore()}
+        />
+      )}
+    </>
+  );
 };
 
 export default Markers;
@@ -32,9 +50,12 @@ const SCALE = 2 / 3;
 const SCALED_MARKER_WIDTH = MARKER_WIDTH * SCALE;
 const SCALED_MARKER_HEIGHT = MARKER_HEIGHT * SCALE;
 
-function generateStoreMarkerIcon(markerIndex: number): ImageIcon {
+function generateStoreMarkerIcon(
+  markerIndex: number,
+  isSelected: boolean
+): ImageIcon {
   return {
-    url: 'images/markers.png',
+    url: isSelected ? 'images/markers-selected.png' : 'images/markers.png',
     size: new naver.maps.Size(SCALED_MARKER_WIDTH, SCALED_MARKER_HEIGHT),
     origin: new naver.maps.Point(SCALED_MARKER_WIDTH * markerIndex, 0),
     scaledSize: new naver.maps.Size(
