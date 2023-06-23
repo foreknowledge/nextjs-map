@@ -16,6 +16,7 @@ const Header = ({ rightElements }: Props) => {
             width={110}
             height={20}
             alt="inflearn logo"
+            priority
           />
         </Link>
       </div>

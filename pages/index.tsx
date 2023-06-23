@@ -1,4 +1,5 @@
 import Header from '@/components/common/Header';
+import MapSection from '@/components/home/MapSection';
 import styles from '@/styles/header.module.scss';
 import Link from 'next/link';
 import { Fragment } from 'react';
@@ -23,7 +24,9 @@ export default function Home() {
           </Link>,
         ]}
       />
-      <main></main>
+      <main style={{ width: '100%', height: '100%' }}>
+        <MapSection />
+      </main>
     </Fragment>
   );
 }
