@@ -1,12 +1,25 @@
 import Header from '@/components/common/Header';
 import MapSection from '@/components/home/MapSection';
+import useStores from '@/hooks/useStores';
 import styles from '@/styles/header.module.scss';
+import { Store } from '@/types/store';
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
 
-export default function Home() {
+interface Props {
+  stores: Store[];
+}
+
+export default function Home({ stores }: Props) {
+  console.log(stores);
+  const { initializeStores } = useStores();
+
+  useEffect(() => {
+    initializeStores(stores);
+  }, [initializeStores, stores]);
+
   return (
     <Fragment>
       <Header
@@ -29,4 +42,12 @@ export default function Home() {
       </main>
     </Fragment>
   );
+}
+
+export async function getStaticProps() {
+  const stores = (await import('@/public/stores.json')).default;
+  return {
+    props: { stores },
+    revalidate: 60 * 60,
+  };
 }
