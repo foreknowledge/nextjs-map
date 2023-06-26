@@ -1,3 +1,4 @@
+import DetailSection from '@/components/home/DetailSection';
 import HomeHeader from '@/components/home/Header';
 import MapSection from '@/components/home/MapSection';
 import useStores from '@/hooks/useStores';
@@ -18,8 +19,9 @@ export default function Home({ stores }: Props) {
   return (
     <Fragment>
       <HomeHeader />
-      <main style={{ width: '100%', height: '100%' }}>
+      <main style={{ position: 'relative', width: '100%', height: '100%' }}>
         <MapSection />
+        <DetailSection />
       </main>
     </Fragment>
   );
