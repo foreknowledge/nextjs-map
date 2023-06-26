@@ -14,9 +14,16 @@ $section-padding-top: 8px;
   border-radius: 24px 24px 0 0;
   box-shadow: 0 -2px 8px 0 rgba(136, 136, 136, 0.3);
 
+  transition: transform 0.8s;
   transform: translateY(
     calc(100% - #{$header-height} - #{$section-padding-top})
   );
+  &.selected {
+    transform: translateY(calc(100% - 160px));
+  }
+  &.expanded {
+    transform: translateY(0);
+  }
 }
 
 .header {
@@ -31,10 +38,28 @@ $section-padding-top: 8px;
 
     border: none;
     background-color: transparent;
+    cursor: pointer;
 
     &:disabled {
       opacity: 0.2;
       cursor: not-allowed;
+    }
+
+    &.expanded {
+      transform: rotate(180deg);
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-5px);
+      }
+    }
+
+    svg {
+      animation: bounce 0.5s infinite alternate ease-in;
     }
   }
 }
