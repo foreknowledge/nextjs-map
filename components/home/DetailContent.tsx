@@ -5,11 +5,12 @@ import { IoCallOutline, IoLocationOutline } from 'react-icons/io5';
 import Naver from 'public/images/naver.png';
 
 interface Props {
-  currentStore: Store;
+  currentStore: Store | undefined;
   expanded: boolean;
 }
 
 const DetailContent = ({ currentStore, expanded }: Props) => {
+  if (!currentStore) return null;
   return (
     <div
       className={`${styles.detailContent} ${expanded ? styles.expanded : ''}`}
