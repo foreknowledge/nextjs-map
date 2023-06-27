@@ -3,6 +3,7 @@ import HomeHeader from '@/components/home/Header';
 import MapSection from '@/components/home/MapSection';
 import useStores from '@/hooks/useStores';
 import { Store } from '@/types/store';
+import { NextSeo } from 'next-seo';
 import { Fragment, useEffect } from 'react';
 
 interface Props {
@@ -18,6 +19,10 @@ export default function Home({ stores }: Props) {
 
   return (
     <Fragment>
+      <NextSeo
+        title="매장 지도"
+        description="Next.js로 만든 매장 지도 서비스 입니다."
+      />
       <HomeHeader />
       <main
         style={{
