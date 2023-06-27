@@ -11,7 +11,12 @@ const Header = ({ onLogoClick, rightElements }: Props) => {
   return (
     <header className={styles.header}>
       <div className={styles.flexItem}>
-        <Link href="/" className={styles.box} onClick={onLogoClick}>
+        <Link
+          href="/"
+          className={styles.box}
+          onClick={onLogoClick}
+          aria-label="홈으로 이동"
+        >
           <Image
             src="https://lecture-1.vercel.app/inflearn.png"
             width={110}
