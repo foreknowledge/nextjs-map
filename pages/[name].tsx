@@ -1,12 +1,28 @@
 import { Store } from '@/types/store';
 import { GetStaticPropsContext } from 'next';
+import styles from '@/styles/detail.module.scss';
+import DetailHeader from '@/components/home/DetailHeader';
+import DetailContent from '@/components/home/DetailContent';
 
 interface Props {
   store: Store;
 }
 
 const DetailPage = ({ store }: Props) => {
-  return <div>detail: {store.name}</div>;
+  const expanded = true;
+
+  return (
+    <div
+      className={`${styles.detailSection} ${styles.selected} ${styles.expanded}`}
+    >
+      <DetailHeader
+        currentStore={store}
+        expanded={expanded}
+        onArrowClick={() => null}
+      />
+      <DetailContent currentStore={store} expanded={expanded} />
+    </div>
+  );
 };
 
 export default DetailPage;
