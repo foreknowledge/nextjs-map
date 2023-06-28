@@ -22,6 +22,7 @@ export default function Home({ stores }: Props) {
       <NextSeo
         title="매장 지도"
         description="Next.js로 만든 매장 지도 서비스 입니다."
+        canonical="https://ellie-nextjs-map.vercel.app/"
       />
       <HomeHeader />
       <main

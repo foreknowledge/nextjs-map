@@ -5,6 +5,7 @@ import DetailHeader from '@/components/home/DetailHeader';
 import DetailContent from '@/components/home/DetailContent';
 import useCurrentStore from '@/hooks/useCurrentStore';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 
 interface Props {
   store: Store;
@@ -23,16 +24,23 @@ const DetailPage = ({ store }: Props) => {
   };
 
   return (
-    <div
-      className={`${styles.detailSection} ${styles.selected} ${styles.expanded}`}
-    >
-      <DetailHeader
-        currentStore={store}
-        expanded={expanded}
-        onArrowClick={goToMap}
+    <>
+      <NextSeo
+        title={store.name}
+        description="매장 상세 페이지 입니다."
+        canonical={`https://ellie-nextjs-map.vercel.app/${store.name}`}
       />
-      <DetailContent currentStore={store} expanded={expanded} />
-    </div>
+      <div
+        className={`${styles.detailSection} ${styles.selected} ${styles.expanded}`}
+      >
+        <DetailHeader
+          currentStore={store}
+          expanded={expanded}
+          onArrowClick={goToMap}
+        />
+        <DetailContent currentStore={store} expanded={expanded} />
+      </div>
+    </>
   );
 };
 
