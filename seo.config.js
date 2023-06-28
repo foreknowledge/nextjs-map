@@ -13,4 +13,10 @@ export default {
       href: '/favicon.ico',
     },
   ],
+  additionalMetaTags: [
+    {
+      name: 'naver-site-verification',
+      content: '81e95609aff3bf3fa53de1050bc8b2965d9f2cf3',
+    },
+  ],
 };
