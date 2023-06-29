@@ -1,6 +1,11 @@
 import { Feedback } from '@/types/feedback';
 import styles from '@/styles/feedback.module.scss';
-import { CARD_WIDTH, snailPositionArray } from './variables';
+import {
+  CARD_WIDTH,
+  FEEDBACK_THEME_SET,
+  pickThemeByTimestamp,
+  snailPositionArray,
+} from './variables';
 
 interface Props {
   feedbackList: Feedback[];
@@ -11,6 +16,7 @@ const FeedbackList = ({ feedbackList }: Props) => {
     <>
       {feedbackList.map((feedback, i) => {
         const isOutOfRange = i >= snailPositionArray.length;
+        const theme = pickThemeByTimestamp(feedback.timestamp);
         return (
           <div
             className={styles.item}
@@ -24,7 +30,10 @@ const FeedbackList = ({ feedbackList }: Props) => {
                   )`,
             }}
           >
-            <div className={styles.card}>
+            <div
+              className={styles.card}
+              style={{ backgroundColor: `${FEEDBACK_THEME_SET[theme].color}` }}
+            >
               <p className={styles.text}>{feedback.content}</p>
             </div>
           </div>
