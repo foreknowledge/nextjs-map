@@ -19,6 +19,7 @@ $feedback-board-width: calc($card-width * $snail-side-length);
   padding: 12px;
 
   .card {
+    position: relative;
     width: 100%;
     height: 100%;
     padding: 16px 16px 32px;
@@ -32,6 +33,37 @@ $feedback-board-width: calc($card-width * $snail-side-length);
 
       font-weight: 0.875rem;
       color: #222;
+    }
+
+    .shadow {
+      position: absolute;
+      box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
+
+      &Right {
+        top: 10px;
+        bottom: 22px;
+        right: 0;
+      }
+      &Bottom {
+        left: 10px;
+        right: 22px;
+        bottom: 0;
+      }
+      &Corner {
+        transform: rotate(-45deg);
+        transform-origin: left;
+        width: 24px;
+        right: -4px;
+        bottom: 2px;
+      }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      transition: transform 0.3s;
+      transform: scale(1);
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 }

@@ -11,19 +11,24 @@ export const snailPositionArray =
 
 export const FEEDBACK_THEME_SET = {
   lightpurple: {
-    color: '#f7edfe',
+    primary: '#f7edfe',
+    secondary: '#d8c3e7',
   },
   purple: {
-    color: '#e2c2fa',
+    primary: '#e2c2fa',
+    secondary: '#b691d2',
   },
   red: {
-    color: '#fac6c2',
+    primary: '#fac6c2',
+    secondary: '#da9691',
   },
   green: {
-    color: '#dafac2',
+    primary: '#dafac2',
+    secondary: '#9ad3b5',
   },
   mint: {
-    color: '#c2f6fa',
+    primary: '#c2f6fa',
+    secondary: '#8ac4c8',
   },
 } as const;
 
