@@ -1,8 +1,15 @@
 import Header from '@/components/common/Header';
+import FeedbackSection from '@/components/feedback/FeedbackSection';
+import { getFeedbackListFromFirestore } from '@/firebase/feedback';
+import { Feedback } from '@/types/feedback';
 import { NextSeo } from 'next-seo';
 import { Fragment } from 'react';
 
-export default function Feedback() {
+interface Props {
+  initialFeedbackList: Feedback[];
+}
+
+export default function Feedback({ initialFeedbackList }: Props) {
   return (
     <Fragment>
       <NextSeo
@@ -12,7 +19,17 @@ export default function Feedback() {
         openGraph={{ url: 'https://ellie-nextjs-map.vercel.app/feedback' }}
       />
       <Header />
-      <main></main>
+      <main>
+        <FeedbackSection initialFeedbackList={initialFeedbackList} />
+      </main>
     </Fragment>
   );
+}
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      initialFeedbackList: await getFeedbackListFromFirestore(),
+    },
+  };
 }
