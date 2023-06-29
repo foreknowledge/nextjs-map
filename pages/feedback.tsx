@@ -19,7 +19,15 @@ export default function Feedback({ initialFeedbackList }: Props) {
         openGraph={{ url: 'https://ellie-nextjs-map.vercel.app/feedback' }}
       />
       <Header />
-      <main>
+      <main
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
+          touchAction: 'pinch-zoom', // 브라우저 터치 액션은 pinch-zoom만 허용
+        }}
+      >
         <FeedbackSection initialFeedbackList={initialFeedbackList} />
       </main>
     </Fragment>

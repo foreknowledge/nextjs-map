@@ -2,6 +2,7 @@ import { Feedback } from '@/types/feedback';
 import { useState } from 'react';
 import FeedbackBoard from './FeedbackBoard';
 import { SNAIL_SIDE_LENGTH, generateNewFeedback } from './variables';
+import FeedbackBoardContainer from './FeedbackBoardContainer';
 
 interface Props {
   initialFeedbackList: Feedback[];
@@ -21,7 +22,11 @@ const FeedbackSection = ({ initialFeedbackList }: Props) => {
       .map((_, i) => generateNewFeedback('', i + 1)),
   ]);
 
-  return <FeedbackBoard feedbackList={feedbackList} />;
+  return (
+    <FeedbackBoardContainer>
+      <FeedbackBoard feedbackList={feedbackList} />
+    </FeedbackBoardContainer>
+  );
 };
 
 export default FeedbackSection;

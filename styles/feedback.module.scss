@@ -2,6 +2,20 @@ $card-width: 200px;
 $snail-side-length: 11;
 $feedback-board-width: calc($card-width * $snail-side-length);
 
+.feedbackBoardContainer {
+  width: $feedback-board-width;
+  height: $feedback-board-width;
+
+  cursor: grab;
+  user-select: none;
+
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .feedbackBoard {
   position: relative;
   width: $feedback-board-width;
