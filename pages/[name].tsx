@@ -29,6 +29,7 @@ const DetailPage = ({ store }: Props) => {
         title={store.name}
         description="매장 상세 페이지 입니다."
         canonical={`https://ellie-nextjs-map.vercel.app/${store.name}`}
+        openGraph={{ url: `https://ellie-nextjs-map.vercel.app/${store.name}` }}
       />
       <div
         className={`${styles.detailSection} ${styles.selected} ${styles.expanded}`}
