@@ -47,14 +47,18 @@ const DetailPage = ({ store }: Props) => {
 export default DetailPage;
 
 export async function getStaticPaths() {
-  const stores = (await import('@/public/stores.json')).default;
+  const stores = (await fetch(
+    process.env.NEXT_PUBLIC_API_URL + '/api/stores'
+  ).then((res) => res.json())) as Store[];
   const paths = stores.map((store) => ({ params: { name: store.name } }));
 
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
-  const stores = (await import('@/public/stores.json')).default;
+  const stores = (await fetch(
+    process.env.NEXT_PUBLIC_API_URL + '/api/stores'
+  ).then((res) => res.json())) as Store[];
   const store = stores.find((store) => store.name === params?.name);
 
   return { props: { store } };
