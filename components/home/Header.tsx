@@ -31,7 +31,7 @@ const HomeHeader = () => {
           key="button"
           aria-label="현재 주소 클립보드 복사"
         >
-          <AiOutlineShareAlt size={20} />
+          <AiOutlineShareAlt size={20} color="#444" />
         </button>,
         <Link
           href="/feedback"
@@ -39,7 +39,7 @@ const HomeHeader = () => {
           key="link"
           aria-label="피드백 페이지로 이동"
         >
-          <VscFeedback size={20} />
+          <VscFeedback size={20} color="#444" />
         </Link>,
       ]}
     />

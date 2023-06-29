@@ -31,7 +31,7 @@ const DetailHeader = ({ currentStore, expanded, onArrowClick }: Props) => {
             onClick={() => copy(`${location.origin}/${currentStore.name}`)}
             aria-label="매장 페이지 주소 클립 보드 복사"
           >
-            <AiOutlineShareAlt size={20} />
+            <AiOutlineShareAlt size={20} color="#444" />
           </button>
         </div>
       )}
