@@ -1,12 +1,14 @@
 import styles from '@/styles/feedback.module.scss';
 import { useCallback, useEffect, useRef } from 'react';
+import { BOARD_WIDTH } from './variables';
 
 interface Props {
   children: React.ReactNode;
+  showClones: boolean;
 }
 
 // 마우스, 터치 이벤트 처리를 담당하는 Component
-const FeedbackBoardContainer = ({ children }: Props) => {
+const FeedbackBoardContainer = ({ children, showClones }: Props) => {
   const feedbackBoardRef = useRef<HTMLDivElement>(null);
   const isDown = useRef(false);
   const position = useRef({ x: 0, y: 0 }); // recent event position
@@ -37,10 +39,16 @@ const FeedbackBoardContainer = ({ children }: Props) => {
   useEffect(() => {
     let timer: number;
     timer = requestAnimationFrame(function slowDown() {
-      offset.current = {
-        x: offset.current.x + speed.current.x,
-        y: offset.current.y + speed.current.y,
-      };
+      // 무한한 영역처럼 보이게끔 일정 영역을 넘어가면 translate offset을 조정한다.
+      let newOffsetX = offset.current.x + speed.current.x;
+      if (newOffsetX > BOARD_WIDTH / 2) newOffsetX = newOffsetX - BOARD_WIDTH;
+      if (newOffsetX < -BOARD_WIDTH / 2) newOffsetX = newOffsetX + BOARD_WIDTH;
+
+      let newOffsetY = offset.current.y + speed.current.y;
+      if (newOffsetY > BOARD_WIDTH / 2) newOffsetY = newOffsetY - BOARD_WIDTH;
+      if (newOffsetY < -BOARD_WIDTH / 2) newOffsetY = newOffsetY + BOARD_WIDTH;
+
+      offset.current = { x: newOffsetX, y: newOffsetY };
 
       if (feedbackBoardRef.current) {
         feedbackBoardRef.current.style.transform = `translate(calc(-50% - ${offset.current.x}px), calc(-50% - ${offset.current.y}px)`;
@@ -58,7 +66,7 @@ const FeedbackBoardContainer = ({ children }: Props) => {
       onPointerUp={onUp}
       onPointerMove={onMove}
       ref={feedbackBoardRef}
-      className={styles.feedbackBoardContainer}
+      className={`${styles.feedbackBoardContainer} ${styles.showClones}`}
     >
       {children}
     </div>
