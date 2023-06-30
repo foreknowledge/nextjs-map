@@ -1,8 +1,13 @@
 import { Feedback } from '@/types/feedback';
 import { useEffect, useState } from 'react';
 import FeedbackBoard from './FeedbackBoard';
-import { SNAIL_SIDE_LENGTH, generateNewFeedback } from './variables';
+import {
+  MAX_CONTENT_LENGTH,
+  SNAIL_SIDE_LENGTH,
+  generateNewFeedback,
+} from './variables';
 import FeedbackBoardContainer from './FeedbackBoardContainer';
+import useInput from '@/hooks/useInput';
 
 interface Props {
   initialFeedbackList: Feedback[];
@@ -28,6 +33,13 @@ const FeedbackSection = ({ initialFeedbackList }: Props) => {
     setShowClones(true);
   }, []);
 
+  // 새로운 피드백
+  const [
+    newFeedbackContent,
+    onChangeNewFeedbackContent,
+    setNewFeedbackContent,
+  ] = useInput('', MAX_CONTENT_LENGTH);
+
   return (
     <FeedbackBoardContainer showClones={showClones}>
       {/* 총 9개의 feedbackBoard 렌더링.
@@ -36,7 +48,11 @@ const FeedbackSection = ({ initialFeedbackList }: Props) => {
         feedbackList={feedbackList}
         showClones={showClones}
       />
-      <FeedbackBoard feedbackList={feedbackList} />
+      <FeedbackBoard
+        feedbackList={feedbackList}
+        newFeedbackContent={newFeedbackContent}
+        onChangeNewFeedbackContent={onChangeNewFeedbackContent}
+      />
       <FourFakeFeedbackBoard
         feedbackList={feedbackList}
         showClones={showClones}

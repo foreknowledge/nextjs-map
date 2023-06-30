@@ -52,7 +52,7 @@ $feedback-board-width: calc($card-width * $snail-side-length);
       word-break: break-all;
       overflow: hidden;
 
-      font-weight: 0.875rem;
+      font-size: 0.875rem;
       color: #222;
     }
 
@@ -86,5 +86,39 @@ $feedback-board-width: calc($card-width * $snail-side-length);
         transform: scale(1.05);
       }
     }
+  }
+}
+
+.inputItem {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .text {
+    background: none;
+    &::placeholder {
+      color: #b5b5b5;
+    }
+  }
+
+  textarea {
+    outline: none;
+    border: none;
+    padding: none;
+
+    box-shadow: none;
+
+    resize: none;
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  .textLength {
+    position: absolute;
+    bottom: 6px;
+    right: 30px;
+
+    font-size: 0.625rem;
+    color: #666;
   }
 }
