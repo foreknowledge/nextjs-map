@@ -8,6 +8,7 @@ import {
 } from './variables';
 import FeedbackBoardContainer from './FeedbackBoardContainer';
 import useInput from '@/hooks/useInput';
+import FeedbackSubmitButton from './FeedbackSubmitButton';
 
 interface Props {
   initialFeedbackList: Feedback[];
@@ -41,23 +42,30 @@ const FeedbackSection = ({ initialFeedbackList }: Props) => {
   ] = useInput('', MAX_CONTENT_LENGTH);
 
   return (
-    <FeedbackBoardContainer showClones={showClones}>
-      {/* 총 9개의 feedbackBoard 렌더링.
+    <>
+      <FeedbackBoardContainer showClones={showClones}>
+        {/* 총 9개의 feedbackBoard 렌더링.
           가운데의 FeedbackBoard가 진짜이고, 나머지는 무한한 공간을 구현하기 위한 가짜 보드. */}
-      <FourFakeFeedbackBoard
-        feedbackList={feedbackList}
-        showClones={showClones}
-      />
-      <FeedbackBoard
-        feedbackList={feedbackList}
+        <FourFakeFeedbackBoard
+          feedbackList={feedbackList}
+          showClones={showClones}
+        />
+        <FeedbackBoard
+          feedbackList={feedbackList}
+          newFeedbackContent={newFeedbackContent}
+          onChangeNewFeedbackContent={onChangeNewFeedbackContent}
+        />
+        <FourFakeFeedbackBoard
+          feedbackList={feedbackList}
+          showClones={showClones}
+        />
+      </FeedbackBoardContainer>
+      <FeedbackSubmitButton
         newFeedbackContent={newFeedbackContent}
-        onChangeNewFeedbackContent={onChangeNewFeedbackContent}
+        setNewFeedbackContent={setNewFeedbackContent}
+        setFeedbackList={setFeedbackList}
       />
-      <FourFakeFeedbackBoard
-        feedbackList={feedbackList}
-        showClones={showClones}
-      />
-    </FeedbackBoardContainer>
+    </>
   );
 };
 

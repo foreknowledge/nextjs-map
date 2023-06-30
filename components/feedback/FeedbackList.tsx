@@ -22,6 +22,7 @@ const FeedbackList = ({ feedbackList }: Props) => {
             className={styles.item}
             key={feedback.timestamp}
             style={{
+              zIndex: i === 1 ? 1 : 0,
               transform: isOutOfRange
                 ? `translate(${-1 * CARD_WIDTH}px, 0)`
                 : `translate(

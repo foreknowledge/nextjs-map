@@ -38,6 +38,7 @@ $feedback-board-width: calc($card-width * $snail-side-length);
   height: $card-width;
 
   padding: 12px;
+  transition: transform 1s;
 
   .card {
     position: relative;
@@ -120,5 +121,29 @@ $feedback-board-width: calc($card-width * $snail-side-length);
 
     font-size: 0.625rem;
     color: #666;
+  }
+}
+
+.submitButton {
+  position: fixed;
+  left: 12px;
+  bottom: 16px;
+  width: calc(100% - 24px);
+
+  z-index: 1;
+  padding: 16px;
+  font-size: 1rem;
+
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  color: white;
+  background-color: #40a6fd;
+  &:hover:not(:disabled) {
+    background-color: #1c7ed6;
+  }
+  &:disabled {
+    background-color: #b5b5b5;
   }
 }
